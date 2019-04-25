@@ -2,9 +2,9 @@
 #include <d3d9.h>
 #include <d3dx9.h>
 
-// 선언	
+// 선언
 #define WIN_WIDTH		800
-#define WIN_HEIGHT		600	
+#define WIN_HEIGHT		600
 #define PI				3.14159265f
 #define FOV				(PI/4.0f)						// 시야각
 #define ASPECT_RATIO	(WIN_WIDTH/(float)WIN_HEIGHT)	// 화면의 종횡비
@@ -12,11 +12,11 @@
 #define FAR_PLANE		10000							// 원거리 평면
 
 // 메세지 처리기 관련
-LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+LRESULT WINAPI MsgProc(HWND hWND, UINT msg, WPARAM wParam, LPARAM lParam);
 void ProcessInput(HWND hWnd, WPARAM keyPress);
 
-// 초기화 관련
-bool InitEverything(HWND hWND);
+//  초기화 관련
+bool InitEverything(HWND hWnd);
 bool InitD3D(HWND hWnd);
 bool LoadAssets();
 LPD3DXEFFECT LoadShader(const char * filename);
