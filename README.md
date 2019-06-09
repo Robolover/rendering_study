@@ -1,2 +1,2 @@
 # rendering_study
-shader programming study with mathematics
+shader programming study with DirectX11 & mathematics
