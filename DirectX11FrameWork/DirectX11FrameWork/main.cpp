@@ -1,8 +1,28 @@
-#include <Windows.h>
-#include <iostream>
-#include <d3d11.h>
+#include "systemclass.h"
 
-INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, INT)
+int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {
+	SystemClass* System;
+	bool result;
+
+	//Create the system object
+	System = new SystemClass;
+	if (System == false)
+	{
+		return 0;
+	}
+
+	//Initialize and run the system object
+	result = System->Initialize();
+	if (result == true)
+	{
+		System->Run();
+	}
+
+	//Shutdown and release the system object
+	System->Shutdown();
+	delete System;
+	System = 0;
+
 	return 0;
 }
