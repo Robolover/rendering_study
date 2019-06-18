@@ -7,14 +7,15 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, PSTR pScmdline, int
 
 	//Create the system object
 	System = new SystemClass;
-	if (System == false)
+	if (!System)
 	{
+		std::cout << "hello";
 		return 0;
 	}
 
 	//Initialize and run the system object
 	result = System->Initialize();
-	if (result == true)
+	if (result)
 	{
 		System->Run();
 	}

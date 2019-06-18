@@ -26,7 +26,7 @@ bool SystemClass::Initialize()
 
 	//Create the input object. This object will be used to handle reading the keyboard input from the user
 	m_Input = new InputClass;
-	if (m_Input == false)
+	if (!m_Input)
 	{
 		return false;
 	}
@@ -36,14 +36,14 @@ bool SystemClass::Initialize()
 
 	//Create the graphics object. This object will handle rendering all the graphics for this application.
 	m_Graphics = new GraphicsClass;
-	if (m_Graphics == false)
+	if (!m_Graphics)
 	{
 		return false;
 	}
 
 	//Initialize the graphics object
 	result = m_Graphics->Initialize(screenWidth, screenHeight, m_hwnd);
-	if (result == false)
+	if (!result)
 	{
 		return false;
 	}
@@ -91,7 +91,7 @@ void SystemClass::Run()
 
 	//Loop until there is a quit message from the window or the user
 	done = false;
-	while (done == false)
+	while (!done)
 	{
 		//Handle the windows messages
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -109,7 +109,7 @@ void SystemClass::Run()
 		{
 			// Otherwise do the frame processing
 			result = Frame();
-			if (result == false)
+			if (!result)
 			{
 				done = true;
 			}
@@ -130,7 +130,7 @@ bool SystemClass::Frame()
 
 	//Do the frame processing for the graphics object
 	result = m_Graphics->Frame();
-	if (result == false)
+	if (!result)
 	{
 		return false;
 	}
@@ -178,7 +178,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	m_hinstance = GetModuleHandle(NULL);
 
 	//Give the application a name
-	m_applicationName = L"Robolover FrameWork";
+	m_applicationName = L"FrameWork";
 
 	//Setup the windows class with default settings
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
@@ -189,8 +189,8 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	wc.hIcon = LoadIcon(NULL, IDI_WINLOGO);
 	wc.hIconSm = wc.hIcon;
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	wc.lpszClassName = NULL;
+	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	wc.lpszMenuName = NULL;
 	wc.lpszClassName = m_applicationName;
 	wc.cbSize = sizeof(WNDCLASSEX);
 
@@ -237,7 +237,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 		posX, posY, screenWidth, screenHeight, NULL, NULL, m_hinstance, NULL);
 
 	//Bring the window up on the screen and set it as main focus
-	ShowWindow(m_hwnd, SW_SHOW);
+	ShowWindow(m_hwnd, SW_SHOWDEFAULT);
 	SetForegroundWindow(m_hwnd);
 	SetFocus(m_hwnd);
 	
