@@ -9,7 +9,6 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, PSTR pScmdline, int
 	System = new SystemClass;
 	if (!System)
 	{
-		std::cout << "hello";
 		return 0;
 	}
 
